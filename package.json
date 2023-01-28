@@ -1,0 +1,14 @@
+{
+  "name": "com.hibzz.singletons",
+  "version": "1.0.0",
+  "displayName": "hibzz.singletons",
+  "description": "A library of singletons for Unity",
+  "author": {
+    "name": "Hibzz Games",
+    "email": "support@hibzz.games",
+    "url": "https://hibzz.games/"
+  },
+  "documentationUrl": "https://github.com/Hibzz-Games/Hibzz.Singletons/blob/main/README.md",
+  "changelogUrl": "https://github.com/Hibzz-Games/Hibzz.Singletons/commits/",
+  "licensesUrl": "https://github.com/Hibzz-Games/Hibzz.Singletons/blob/main/LICENSE.md"
+}
