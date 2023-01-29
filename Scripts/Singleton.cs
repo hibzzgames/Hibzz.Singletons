@@ -1,3 +1,5 @@
+using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace Hibzz.Singletons
@@ -24,8 +26,18 @@ namespace Hibzz.Singletons
 			T[] items = FindObjectsOfType<T>();
 			if (items.Length == 0)
 			{
-				Singleton<T> t = new Singleton<T>();
-				return t.CreateNewInstance();
+				// Using the reflection system, look if CreateNewInstance is being overriden
+				Type type = typeof(T);
+				MethodInfo method = type.GetMethod("CreateNewInstance", BindingFlags.NonPublic | BindingFlags.Static);
+
+				// If the reflection system can find an overriden version of the static function CreateNewInstance, then invoke it
+				if(method is not null) 
+				{
+					return (T) method.Invoke(null, null);
+				}
+
+				// No overrides found, call base implementation
+				return CreateNewInstance();
 			}
 			else if (items.Length > 1)
 			{
@@ -39,7 +51,7 @@ namespace Hibzz.Singletons
 		}
 
 		// Overridable function used to create custom instance creation if needed
-		protected virtual T CreateNewInstance()
+		protected static T CreateNewInstance()
 		{
 			GameObject obj = new GameObject();
 			obj.name = typeof(T).Name + "Object";
