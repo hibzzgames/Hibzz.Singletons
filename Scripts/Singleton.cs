@@ -7,6 +7,11 @@ namespace Hibzz.Singletons
 	public class Singleton<T> : MonoBehaviour where T : Component
 	{
 		private static T instance;
+
+		/// <summary>
+		/// Gives a reference to the singleton instance. If none is available, 
+		/// creates a new one and returns it
+		/// </summary>
 		public static T Instance
 		{
 			get
@@ -19,6 +24,12 @@ namespace Hibzz.Singletons
 				return instance;
 			}
 		}
+
+		/// <summary>
+		/// Gives any available singleton instance. 
+		/// If none was created or if one was destroyed, returns null.
+		/// </summary>
+		public static T AvailableInstance => instance;
 
 		// Used to create a new instance of the singleton
 		private static T RequestNewInstance()
