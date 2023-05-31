@@ -1,4 +1,4 @@
-[Hibzz Singletons](https://github.com/Hibzz-Games/Hibzz.Singletons) © 2023 by [Hibzz Games](hibzz.games) is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+[Hibzz Singletons](https://github.com/hibzzgames/Hibzz.Singletons) © 2023 by [Hibzz Games](hibzz.games) is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ```
 Creative Commons Corporation ("Creative Commons") is not a law firm and
