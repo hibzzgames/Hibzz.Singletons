@@ -1,0 +1,37 @@
+---
+title: Getting Started
+description: This page contains information on how to install the Hibzz.Singleton package in Unity
+---
+
+This package contains a library of singletons that is ready to be used in Unity.
+
+## Installation
+**Via Package Manager:** This package can be installed in the Unity Package Manager using the following git URL.
+
+```
+https://github.com/hibzzgames/Hibzz.Singletons.git
+```
+
+Alternatively, you can download the latest release from the [releases page](https://github.com/hibzzgames/Hibzz.Singletons/releases) and manually import the package into your project.
+
+
+## Basic Usage
+The singleton classes are located inside the namespace `Hibzz.Singletons` and any of the Unity MonoBehaviors can be converted into a singleton using the following syntax.
+
+```csharp
+using Hibzz.Singletons;
+
+public class AIManager : Singleton<AIManager>
+{
+    public int LiveNPCCount;
+}
+```
+
+Now this Singleton can be accessed using the Instance field.
+
+```csharp
+int _currentNPCCount = AIManager.Instance.LiveNPCCount;
+Debug.Log($"Number of Live NPC's in scene: {_currentNPCCount}");
+```
+
+Learn more about how to use the package [here](/singletons/singleton/).

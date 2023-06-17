@@ -1,0 +1,52 @@
+---
+title: Singleton
+description: This page contains detailed documentation on how to use the Singleton class
+---
+
+This is a simple singleton class that creates a new GameObject in the scene when it first gets accessed. A new singleton class can be created using the following inheritance syntax.
+
+```csharp
+using Hibzz.Singletons;
+
+public class AIManager : Singleton<AIManager>
+{
+}
+```
+
+## Instance
+The singleton can be accessed using the Instance property in the class.
+
+```csharp
+AIManager _singletonReference = AIManager.Instance;
+```
+
+When accessing a singleton instance, the library looks for any GameObject with a monobehavior of the same type as the singleton class and if one is found in the scene, it provides that. But if one is not available, the library creates a new GameObject with the singleton as a component of that object.
+
+This provides the users the flexibility to configure and add custom singletons to a scene if needed. However, if the user accidentally adds multiple instances of the same singleton type, it's not possible to decipher which one should be treated as the singleton class. So, the library warns the user with an error message and returns `null` instead.
+
+
+## Destruction
+When the object gets destroyed, the Singleton instance is set to `null`. However, when the Singleton Instance gets accessed, it would create a new Singleton object. That would be the expected behavior.
+
+This can be problematic when a user is trying to access the Singleton inside an `OnDestroy` event where the entire scene is being destroyed. So, the library provides a different API that would give direct access to the Singleton instance without creating a new instance when the instance is `null`.
+
+```csharp
+// doesn't create a new instance if null when referenced
+AIManager _singletonReference = AIManager.AvailableInstance;
+```
+
+## Overrideable Methods
+If a developer wants to change the behavior of how their singletons are created and or destroyed, they can override the following functions.
+
+```csharp
+protected static T CreateNewInstance() 
+{
+    ...
+}
+
+protected virtual void OnDestroy()
+{
+    ...
+}
+```
+
