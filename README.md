@@ -1,5 +1,5 @@
 # Hibzz.Singletons
-![LICENSE](https://img.shields.io/badge/LICENSE-CC--BY--4.0-ee5b32?style=for-the-badge) [![Twitter Follow](https://img.shields.io/badge/follow-%40hibzzgames-1DA1f2?logo=twitter&style=for-the-badge)](https://twitter.com/hibzzgames) [![Discord](https://img.shields.io/discord/695898694083412048?color=788bd9&label=DIscord&style=for-the-badge)](https://discord.gg/tZdZFK7) ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white) ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
+![LICENSE](https://img.shields.io/badge/LICENSE-CC--BY--4.0-ee5b32?style=for-the-badge) [![Twitter Follow](https://img.shields.io/badge/follow-%40hibzzgames-1DA1f2?logo=twitter&style=for-the-badge)](https://twitter.com/hibzzgames) [![Discord](https://img.shields.io/discord/695898694083412048?color=788bd9&label=DIscord&style=for-the-badge)](https://discord.gg/YXdJ8cZngB) ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white) ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 
 ***A library of singletons for Unity***
 
@@ -14,11 +14,29 @@ Alternatively, you can download the latest release from the [releases page](http
 
 <br>
 
-## Usage
-*TODO: Add usage instructions*
+## Basic Usage
+The singleton classes are located inside the namespace `Hibzz.Singletons` and any of the Unity MonoBehaviors can be converted into a singleton using the following syntax.
+
+```csharp
+using Hibzz.Singletons;
+
+public class AIManager : Singleton<AIManager>
+{
+    public int LiveNPCCount;
+}
+```
+
+Now this Singleton can be accessed using the Instance field.
+
+```csharp
+int _currentNPCCount = AIManager.Instance.LiveNPCCount;
+Debug.Log($"Number of Live NPC's in scene: {_currentNPCCount}");
+```
+
+Additionally, this package includes support for `ScriptableSingleton`s. Learn more about this package in the [documentation](https://docs.hibzz.games/singletons/getting-started/).
 
 ## Have a question or want to contribute?
-If you have any questions or want to contribute, feel free to join the [Discord server](https://discord.gg/tZdZFK7) or [Twitter](https://twitter.com/hibzzgames). I'm always looking for feedback and ways to improve this tool. Thanks!
+If you have any questions or want to contribute, feel free to join the [Discord server](https://discord.gg/YXdJ8cZngB) or [Twitter](https://twitter.com/hibzzgames). I'm always looking for feedback and ways to improve this tool. Thanks!
 
-Additionally, you can support the development of these opensource projects via [GitHub Sponsors](https://github.com/sponsors/sliptrixx) and gain early access to the projects.
+Additionally, you can support the development of these open-source projects via [GitHub Sponsors](https://github.com/sponsors/sliptrixx) and gain early access to the projects.
 
