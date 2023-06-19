@@ -1,0 +1,31 @@
+---
+title: Scriptable Singleton
+description: This page contains detailed documentation on how to use the Scriptable Singleton class
+---
+
+The Scriptable Singleton class is a variant of the Singleton class that allows you to access a single instance of a `ScriptableObject` from anywhere in your code. This is useful for storing global data that you want to be able to access from anywhere in your game.
+
+## How to use it
+To get started, create a new class that inherits the `ScriptableSingleton` class using the following syntax:
+
+```csharp
+[CreateAssetMenu(menuName = "Singleton Objects/Prefab Manager")]
+public class PrefabManager : ScriptableSingleton<PrefabManager>
+{
+}
+```
+
+For this system to work, you must create an instance of your singleton scriptable object in your project's `Resources/Singleton` folder. If this folder does not exist, you will need to create it. The `CreateAssetMenu` attribute is used to add a menu item to the Unity Editor's `Assets/Create` menu. This allows you to easily create an instance of your singleton asset.
+
+:::warning
+It's recommended to have exactly one instance of your singleton asset in your project. If you have more than one, the system will use the first one it finds, which may be unexpected.
+:::
+
+## Accessing your singleton
+Just like the regular `Singleton` class, you can access the properties of your `ScriptableSingleton` using the `Instance` property. For example, if you have a `PrefabManager` singleton, you can access it like this:
+
+```csharp
+PrefabManager _prefabManager = PrefabManager.Instance;
+```
+
+That's all there is to it! You can now access your scriptable singleton and any reference it has from anywhere in your code.
