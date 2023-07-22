@@ -33,7 +33,14 @@ int _currentNPCCount = AIManager.Instance.LiveNPCCount;
 Debug.Log($"Number of Live NPC's in scene: {_currentNPCCount}");
 ```
 
-Additionally, this package includes support for `ScriptableSingleton`s. Learn more about this package in the [documentation](https://docs.hibzz.games/singletons/getting-started/).
+<br>
+
+### Scriptable Singletons
+This package includes support for `ScriptableSingleton`s. 
+
+Scriptable Singleton objects can be automatically created when the class is tagged with the `CreateScriptableSingletonAsset` attribute and the "Create Scriptable Singleton Asset" menu item is selected from the "Hibzz/Singletons" menu.
+
+Learn more about this package in the [documentation](https://docs.hibzz.games/singletons/getting-started/).
 
 ## Have a question or want to contribute?
 If you have any questions or want to contribute, feel free to join the [Discord server](https://discord.gg/YXdJ8cZngB) or [Twitter](https://twitter.com/hibzzgames). I'm always looking for feedback and ways to improve this tool. Thanks!

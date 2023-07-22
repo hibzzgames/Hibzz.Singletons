@@ -5,5 +5,5 @@ using UnityEngine;
 
 namespace Hibzz.Singletons
 {
-    public class AutoCreateScriptableSingletonAttribute : Attribute { }
+    public class CreateScriptableSingletonAssetAttribute : Attribute { }
 }

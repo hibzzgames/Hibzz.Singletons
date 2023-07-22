@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -19,21 +17,21 @@ namespace Hibzz.Singletons.Editor
         const string UPTO_DATE_MESSAGE = "<Color=lightblue>Scriptable singletons up to date.</Color>";
         const string NO_ATTRIBUTE_FOUND_MESSAGE = UPTO_DATE_MESSAGE + "\n" +
             "  None of the classes use the auto create scriptable singleton attribute. \n" +
-            "  Please use <i>AutoCreateScriptableSingleton</i> attribute to use this functionality. \n";
+            "  Please use <i>CreateScriptableSingletonAsset</i> attribute to use this functionality. \n";
 
         #endregion
 
         /// <summary>
         /// Create ScriptableSingleton assets for all classes that has a 
-        /// AutoCreateScriptableSingleton attribute
+        /// CreateScriptableSingletonAsset attribute
         /// </summary>
         [MenuItem(CREATE_SINGLETON_ASSET_PATH)]
         public static void CreateScriptableSingletonAssets()
         {
             // get the collection of classes with the auto create attribute
-            var types = TypeCache.GetTypesWithAttribute<AutoCreateScriptableSingletonAttribute>();
+            var types = TypeCache.GetTypesWithAttribute<CreateScriptableSingletonAssetAttribute>();
 
-            // none of the classes use `AutoCreateScriptableSingleton` Attribute
+            // none of the classes use `CreateScriptableSingletonAsset` Attribute
             // let the user know about that
             if (types.Count <= 0)
             {
@@ -76,7 +74,7 @@ namespace Hibzz.Singletons.Editor
             // singleton object
             if(!type.IsSubclassOf(typeof(ScriptableObject))) 
             {
-                Debug.LogWarning($"Incorrect use of <i>AutoCreateScriptableSingleton</i> attribute. '{type.FullName}' is not a subclass of type <i>ScriptableObject</i>");
+                Debug.LogWarning($"Incorrect use of <i>CreateScriptableSingletonAssetAttribute</i> attribute. '{type.FullName}' is not a subclass of type <i>ScriptableObject</i>");
                 return false; 
             }
 
