@@ -5,7 +5,7 @@ namespace Hibzz.Singletons
 	// NOTE: For ScriptableSingleton to work, an instance of the singleton must be added to the 
 	//       "Resources/Singletons" folder... Furthermore, there must be exactly 1
 	//       ScriptableSingleton of a given type, else, it'll pick the first one in the list
-	public class ScriptableSingleton<T> : ScriptableObject where T : ScriptableSingleton<T>
+	public class ScriptableSingleton<T> : ScriptableObject where T : ScriptableObject
 	{
 		private static T instance;
 		public static T Instance
