@@ -2,7 +2,8 @@
     "name": "com.hibzz.singletons.editor",
     "rootNamespace": "Hibzz.Singletons.Editor",
     "references": [
-        "GUID:b2fef9eae29790340a713d8578864b00"
+        "GUID:b2fef9eae29790340a713d8578864b00",
+        "GUID:b844f493a2cd07b4cbf81917a23ac063"
     ],
     "includePlatforms": [
         "Editor"

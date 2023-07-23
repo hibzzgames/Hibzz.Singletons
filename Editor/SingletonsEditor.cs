@@ -9,7 +9,9 @@ namespace Hibzz.Singletons.Editor
     {
         // These are menu paths
         const string BASE_PATH = "Hibzz/Singletons/";
-        const string CREATE_SINGLETON_ASSET_PATH = BASE_PATH + "Create Scriptable Singleton Assets";
+
+        #region Scriptable Singleton Asset Creator Code
+        #if !DISABLE_SCRIPTABLE_SINGLETON_CREATOR // when feature isn't disabled
 
         // these are debug logs made into consts
         #region Debug Logs
@@ -20,6 +22,9 @@ namespace Hibzz.Singletons.Editor
             "  Please use <i>CreateScriptableSingletonAsset</i> attribute to use this functionality. \n";
 
         #endregion
+        
+
+        const string CREATE_SINGLETON_ASSET_PATH = BASE_PATH + "Create Scriptable Singleton Assets";
 
         /// <summary>
         /// Create ScriptableSingleton assets for all classes that has a 
@@ -94,6 +99,9 @@ namespace Hibzz.Singletons.Editor
             // return true indicating that the process was successful
             return true;
         }
+
+        #endif
+        #endregion
     }
 }
 
