@@ -1,0 +1,28 @@
+---
+title: Scriptable Singleton Asset Creator
+description: This page contains documentation on how to use the Scriptable Singleton Asset Creator in Unity
+---
+
+The Singletons package includes a tool called the **Scriptable Singleton Asset Creator**. This tool makes it easier to create the Singleton Assets by providing a helpful UI button in the Unity Editor and automatically creating the asset in the correct folder.
+
+This helps to avoid the common mistake of creating the asset in the wrong folder, which can cause issues with the asset not being found at runtime and also helps to avoid the tedious task of creating the asset manually.
+
+## Creating Singleton Assets
+Start by marking your custom class that inherits from `ScriptableSingleton` with the `[CreateScriptableSingletonAsset]` attribute. Like this:
+
+```csharp
+[CreateScriptableSingletonAsset]
+public class Example : ScriptableSingleton<Example>
+{
+    // ...
+}
+```
+
+Then, in the Unity Editor, you can click the **Create Scriptable Singleton Assets** button in the toolbar, under *Hibzz > Singletons > Create Scriptable Singleton Assets*. This will create any missing singleton assets in the correct folder.
+
+## Disabling this feature
+If you don't want to use this feature, it can be disabled using the [Define Manager](https://github.com/hibzzgames/Hibzz.DefineManager) package by Hibzz Games. The Singletons package has a neat integration with the Define Manager package that allows you to disable this feature with a single click.
+
+Simply launch the Define Manager window by going to *Hibzz > Define Manager > Open Define Manager Window* and install the *"Disable Scriptable Singleton Creator"* feature. This will strip out the code that enables this feature.
+
+Optionally, you can also manually add `DISABLE_SCRIPTABLE_SINGLETON_CREATOR` to your Unity project as a Scripting Define Symbol.
