@@ -36,7 +36,7 @@ namespace Hibzz.Singletons
         // Used to create a new instance of the singleton
         private static T RequestNewInstance()
         {
-            T[] items = FindObjectsOfType<T>();
+            T[] items = GetAllObjects();
             if (items.Length == 0)
             {
                 // Using the reflection system, look if CreateNewInstance is being overriden
@@ -69,6 +69,45 @@ namespace Hibzz.Singletons
             GameObject obj = new GameObject();
             obj.name = typeof(T).Name + "Object";
             return obj.AddComponent<T>();
+        }
+
+        // Summary: Get all components of type T in the scene
+        // Remarks: This is an editor friendly version of FindObjectsOfType
+        //          that works on singletons that exist on an editor context.
+        //          The function is more expensive in editor context, however
+        //          remains cheap in regular playmode.
+        protected static T[] GetAllObjects()
+        {
+            #if UNITY_EDITOR
+
+            // when the editor is in play mode, FindObjectsOfType will work
+            if (Application.isPlaying)
+            {
+                return FindObjectsOfType<T>();
+            }
+
+            // the editor is not in playmode, so in the editor context
+            // this container will store all objects found of type T in the scene
+            List<T> singletons = new List<T>();
+
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            foreach (var rootObject in rootObjects)
+            {
+                var comps = rootObject.GetComponentsInChildren<T>();
+                foreach (var comp in comps)
+                {
+                    singletons.Add(comp);
+                }
+            }
+
+            // convert the list to an array, as that's the return type expected
+            return singletons.ToArray();
+
+            #else
+            
+            return FindObjectsOfType<T>();
+            
+            #endif
         }
 
         // when the singleton object gets destroyed, we make sure that the
