@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Hibzz.Singletons
 {
@@ -80,20 +79,33 @@ namespace Hibzz.Singletons
         {
             #if UNITY_EDITOR
 
-            // when the editor is in play mode, FindObjectsOfType will work
+            // when the editor is in play mode, FindObjectsOfType will work... 
+            // however, if the nothing was found, we can do an extensive search
+            // with the objects that might be marked with "Don't Save" flags
             if (Application.isPlaying)
             {
-                return FindObjectsOfType<T>();
+                var result = FindObjectsOfType<T>();
+                if(result.Length > 0) 
+                { 
+                    return result; 
+                }
             }
 
             // the editor is not in playmode, so in the editor context
             // this container will store all objects found of type T in the scene
             List<T> singletons = new List<T>();
 
-            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-            foreach (var rootObject in rootObjects)
+            // resources api needs to be used, else it won't detect objects of
+            // that have a don't save flag
+            GameObject[] gameobjects = Resources.FindObjectsOfTypeAll<GameObject>();
+            foreach (var go in gameobjects)
             {
-                var comps = rootObject.GetComponentsInChildren<T>();
+                // a persistent gameobject is something stored in the disk, so
+                // usually a prefab... ignore those type of objects
+                if(UnityEditor.EditorUtility.IsPersistent(go)) { continue; }
+
+                // get all singleton objects of type T and store it in the list of singletons
+                var comps = go.GetComponentsInChildren<T>();
                 foreach (var comp in comps)
                 {
                     singletons.Add(comp);
@@ -105,6 +117,9 @@ namespace Hibzz.Singletons
 
             #else
             
+            // only simple gameobject find in scene... To be honest, I don't 
+            // see a point in instantiating objects with the Don't save flags 
+            // in the build version of a game, so this will do fine
             return FindObjectsOfType<T>();
             
             #endif
