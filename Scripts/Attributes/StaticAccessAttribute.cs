@@ -1,11 +1,9 @@
+#if !DISABLE_SINGLETON_AUTO_PUBLIC_STATIC_ACCESSOR
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Hibzz.Singletons
-{
-    
+{    
     public class StaticAccessAttribute : Attribute 
     {
         public string VariableName { get; protected set; } = null;
@@ -44,3 +42,5 @@ namespace Hibzz.Singletons
         }
     }
 }
+
+#endif
