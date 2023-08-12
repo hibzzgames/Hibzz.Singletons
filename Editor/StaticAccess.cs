@@ -8,14 +8,15 @@ namespace Hibzz.Singletons.Editor
 {
     public class StaticAccess : AssetPostprocessor
     {
+        const string STATIC_ACCESS_PAUSE_KEY = "Hibzz/Singletons/Pause Automatic Code Generation";
+
         // gets a notification after all asset has been imported
-        private static void OnPostprocessAllAssets(
-            string[] importedAssets,
-            string[] deletedAssets,
-            string[] movedAssets,
-            string[] movedFromAssetPaths
-            )
+        private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, 
+            string[] movedAssets, string[] movedFromAssetPaths)
         {
+            // if the user wants to pause the automatic code generation of this system, dont proceed
+            if(Menu.GetChecked(STATIC_ACCESS_PAUSE_KEY)) { return; }
+
             // flag that indicates if code has been generated
             bool codeGenerated = false;
 
@@ -218,6 +219,13 @@ namespace Hibzz.Singletons.Editor
             }
 
             return true; // code was indeed generated
+        }
+
+        [MenuItem(STATIC_ACCESS_PAUSE_KEY)]
+        private static void OnStaticAccessPauseMenuPressed()
+        {
+            // this should toggle the Automatic Code Generation
+            Menu.SetChecked(STATIC_ACCESS_PAUSE_KEY, !Menu.GetChecked(STATIC_ACCESS_PAUSE_KEY));
         }
     }
 
