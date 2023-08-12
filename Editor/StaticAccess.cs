@@ -1,3 +1,5 @@
+#if !DISABLE_SINGLETON_AUTO_PUBLIC_STATIC_ACCESSOR
+
 using System;
 using System.IO;
 using System.Reflection;
@@ -300,3 +302,5 @@ namespace Hibzz.Singletons.Editor
         }
     }
 }
+
+#endif
