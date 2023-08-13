@@ -36,9 +36,27 @@ Debug.Log($"Number of Live NPC's in scene: {_currentNPCCount}");
 <br>
 
 ### Scriptable Singletons
-This package includes support for `ScriptableSingleton`s. 
+This package includes support for `ScriptableSingleton`s. These are Singletons that exists as a ScriptableObject asset in the Resources folder. This allows a Scriptable Singleton to be accessed from anywhere in the project without having to be in the scene.
 
-Scriptable Singleton objects can be automatically created when the class is tagged with the `CreateScriptableSingletonAsset` attribute and the "Create Scriptable Singleton Asset" menu item is selected from the "Hibzz/Singletons" menu.
+Moreover, these objects can be automatically created when the class is tagged with the `[CreateScriptableSingletonAsset]` attribute and the "Create Scriptable Singleton Asset" menu item is selected from the "Hibzz/Singletons" menu.
+
+<br>
+
+### [StaticAccess] Attribute
+The Singletons package comes with a powerful tool for accessing instanced members of a Singleton class without the `Instance` field. This is done by tagging the member with a `[StaticAccess]` attribute.
+
+```csharp
+// defining the singleton
+public partial class AIManager : Singleton<AIManager>
+{
+    [StaticAccess] int _liveNPCCount;
+}
+
+// Accessing the member
+var npcCount = AIManager.LiveNPCCount;
+```
+
+<br>
 
 Learn more about this package in the [documentation](https://docs.hibzz.games/singletons/getting-started/).
 
@@ -46,4 +64,3 @@ Learn more about this package in the [documentation](https://docs.hibzz.games/si
 If you have any questions or want to contribute, feel free to join the [Discord server](https://discord.gg/YXdJ8cZngB) or [Twitter](https://twitter.com/hibzzgames). I'm always looking for feedback and ways to improve this tool. Thanks!
 
 Additionally, you can support the development of these open-source projects via [GitHub Sponsors](https://github.com/sponsors/sliptrixx) and gain early access to the projects.
-
